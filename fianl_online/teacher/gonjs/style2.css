@@ -1,0 +1,36 @@
+
+/* Paper */
+
+#myholder {
+	
+	width:100%;
+	height: 780px;/*538*/
+}
+
+#myholder .paper-scroller {
+   width: 100%;
+   height: 100%;
+}
+
+#myholder svg {
+   /* Grid background image */
+   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAHUlEQVQYV2NkYGAwBuKzQIwXMBJSAJMfVUidcAQAnUQBC6jEGBUAAAAASUVORK5CYII=');
+   background-color: white;
+   box-shadow: 1px 1px 1px lightgray;
+}
+
+#myholder svg .drawable {
+   /* Grid background image */
+   fill: white;
+   stroke: black;
+   stroke-width: 1px;
+}
+
+.element.basic.Rect rect,
+.element.basic.Circle circle,
+.element.devs.Model rect {
+   -webkit-svg-shadow: 2px 2px 5px gray;
+}
+
+.element.basic.Path path { -webkit-svg-shadow: 1px 1px 2px gray; }
+.element.basic.Path path { fill: #3e3f47; }

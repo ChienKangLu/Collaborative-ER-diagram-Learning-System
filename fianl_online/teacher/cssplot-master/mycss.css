@@ -1,0 +1,9 @@
+.column-chart, .bar-chart, .scatter-plot { margin: 20px; border: 1px solid #3498db; }
+.scatter-plot, .column-chart { height: 300px; }
+.bar-chart.stacked [data-cp-size] { min-height: 0.655em; }
+.bar-chart [data-cp-size],
+.bar-chart.stacked .pad [data-cp-size] { min-height: 0.8em; }
+.pad ul [data-cp-size] { padding: 8px; }
+/*a { color: #3498db; text-decoration: none; }*/
+.plot-container li:hover { opacity: 0.8; }
+li { list-style: none; }

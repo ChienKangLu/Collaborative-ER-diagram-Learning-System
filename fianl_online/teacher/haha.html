@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>IIS7</title>
+<style type="text/css">
+.CHOOSE{
+	margin:30px;
+}
+.set{
+	background-color:#5995A8;
+	margin:20px;
+}
+</style>
+</head>
+<body>
+
+組別個數
+<input id="num" type="text" name="email" size="20">
+<button id="group">group</button><button id="save">save</button>
+<div id="work">
+<script>
+
+group.onclick=function(){
+	var txt="";
+	for(var i=0;i<num.value;i++){
+		
+		txt+='<div id="set'+i+'" class="set"><input id="r'+i+'" type="text" name="email" size="20"><button id="sent" onclick="create(set'+i+',r'+i+'.value);">go</button></div>'
+	}
+	document.getElementById("work").innerHTML =txt;
+}
+
+
+function create(now,n){
+	total=0;
+	//alert(n+"~~"+num.value);
+	//document.getElementById("work").innerHTML =num.value;
+	var txt="";
+	var inn="";
+	for(var i=0;i<60;i++){
+		inn+="<option>01156109</option>";
+	}
+	for(var i=0;i<n;i++){
+		txt+='<select class="CHOOSE">'+inn+'</select>';
+		txt+='</br>';
+		total++;
+	}
+	//alert(txt);
+	now.innerHTML =txt;
+}
+save.onclick=function(){
+	alert(total);
+}
+</script>
+</div>
+</body>
+</html>

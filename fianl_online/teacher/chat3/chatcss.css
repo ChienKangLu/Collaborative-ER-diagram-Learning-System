@@ -1,0 +1,40 @@
+        .float_left{
+            float: left;
+        }
+        .float_right{
+            float: right;
+        }
+        .shapediv{
+            font-size: 15px;
+            border-radius: 10px;
+            padding: 10px;
+            max-width: 190px;
+            
+        }
+        .self{
+            color: white;
+            background-color: #286090;
+            border-color: #204d74;
+            margin-right: 5px;
+        }
+        .other{
+            color:black;
+            background-color:#eaeaea;
+            border-color: #d1d1d1;
+        }
+        .blank{
+            color: white;
+        }
+        .othername{
+            font-size: 15px;
+        }
+        .block{
+            margin-top: 10px;
+        }
+        .bigblock{
+            
+            height: 400px;
+            overflow-y: scroll;
+            padding-bottom: 5px;
+        }
+        

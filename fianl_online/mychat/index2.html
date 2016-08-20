@@ -1,0 +1,253 @@
+<!doctype html>
+
+
+<html>
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Untitled Document</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="chatcss.css">
+	<script src="chatajax.js"></script>
+	
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
+	
+	<script src="carhartl-jquery-cookie-92b7715/jquery.cookie.js"></script>
+	
+    <!--<script src="chatajax.js"></script>-->
+
+
+</head>
+<body style="><!--onload="setInterval('update(tt)', 5000)"-->
+<script>
+var slide=true;
+$( document ).ready(function() {
+	$("#stopchat").click(function(){
+		if($("#stopchat").hasClass("glyphicon-pushpin")){
+            $("#stopchat").removeClass("glyphicon-pushpin");
+            $("#stopchat").addClass("glyphicon-sort");
+			slide=false;
+         }else{
+            $("#stopchat").removeClass("glyphicon-sort");
+            $("#stopchat").addClass("glyphicon-pushpin");
+			slide=true;
+        }
+	});    
+});
+
+</script>
+<div class="chatpanel">
+<span id="stopchat" class="glyphicon glyphicon-pushpin chatstop"></span><!--glyphicon glyphicon-sort-->
+<span id="chatcount" class="glyphicon glyphicon-user chatpeople">1</span>
+
+</div>
+<div id="big" class="bigblock">
+<!--
+  <div class="block" >  
+       <div class="float_right shapediv self" data-toggle="tooltip" data-placement="left" title="9:12">
+           你好阿
+       </div>
+  </br>
+  </div>
+  <div class="block">
+       <div class="othername">
+           王慧縈
+       </div>
+         <div class="shapediv other" data-toggle="tooltip" data-placement="right" title="9:15">
+           你好阿你好阿你好阿你好阿你好阿你好阿你好阿你好阿你好阿你好阿你好阿你好阿你好阿你好阿你好阿你好阿你好阿
+       </div>
+     
+  </div>
+  <div class="block">
+       <div class="othername">
+           王慧縈
+       </div>
+         <div class="shapediv other" data-toggle="tooltip" data-placement="right" title="9:16">
+           你好阿
+       </div>
+     
+  </div>
+ <div class="block">  
+       <div class="float_right shapediv self" data-toggle="tooltip" data-placement="left" title="9:18">
+           你好阿
+       </div>
+  </br>
+  </div>
+  <div class="block">  
+       <div class="float_right shapediv self" data-toggle="tooltip" data-placement="left" title="9:18">
+           你好阿你好阿你好阿
+       </div>
+  </br>
+  </div> 
+   <div class="block">
+       <div class="othername">
+           王慧縈
+       </div>
+         <div class="shapediv other" data-toggle="tooltip" data-placement="right" title="9:15">
+           你好阿你好阿你好阿你好阿你好阿你好阿你好阿你好阿你好阿你好阿你好阿你好阿你好阿你好阿你好阿你好阿你好阿
+       </div>
+     
+  </div>
+  <div class="block leave">離開</div>
+  -->
+</div>
+  <div class="form-group">
+  <textarea id="posttext"  class="form-control" rows="4" id="comment" placeholder="輸入訊息‧‧‧‧‧‧"></textarea>
+</div>
+
+	<script src="/socket.io/socket.io.js"></script>
+<script>//send update
+    
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+	login(nowuser["id"]);
+});
+	var socket = io();
+	var people;
+	//alert("good");
+	//alert($.cookie('gon_mychat_user'));
+	var nowuser=JSON.parse($.cookie('gon_mychat_user'));//目前的使用者
+						//logout(nowuser["id"]);
+	var ques=nowuser["ques"];
+	$(window).bind("beforeunload", function() { 
+		logout(nowuser["id"]);
+		//return true; 
+	});
+	//alert(ques);
+//	$.cookie('remcookie', 'Remove Test');
+ //   alert("Cookie created");
+///	alert($.cookie('remcookie'));
+	//alert(moment().format());
+	//alert(moment().format('MMMM Do YYYY, h:mm:ss a'));
+	socket.on('connect', function() {
+		socket.emit('newpeople',nowuser); 
+		console.log("enter");
+	});
+
+   $('#posttext').keyup(function(e) {
+      if (e.keyCode == 13) {
+          if(event.shiftKey){
+              //alert("new line");
+          }else{
+
+			var text=$(this).val();
+			var json={};
+			
+			json["txt"]=text;
+			json["name"]=nowuser["name"];
+			json["groupid"]=nowuser["groupid"];
+			json["id"]=nowuser["id"];
+			//json["time"]="123";
+			
+			var myjsontext={};
+			myjsontext["userid"]=nowuser["id"];
+			myjsontext["quesid"]=ques;//更改already test
+			myjsontext["groupid"]=nowuser["groupid"];
+			savechat(JSON.stringify(myjsontext),text);
+			
+			
+			socket.emit('chat message','chatting',JSON.stringify(json));//本機端傳至server
+            $(this).val("");
+          }
+      }
+   });
+   	  socket.on('chat message', function(way,msg){//接收server至本機端
+			if(way=="chatting"){
+				var json=JSON.parse(msg);
+				if(json["groupid"]==nowuser["groupid"]){
+					if(json["id"]==nowuser["id"]){
+						$('#big').append(self(json["txt"],json["time"]));
+					}else{
+						$('#big').append(other(json["name"],json["txt"],json["time"]));
+					}				
+					$('[data-toggle="tooltip"]').tooltip();
+				}
+			}else if(way=="newConnect"){
+					var json=JSON.parse(msg);
+					if(json["groupid"]==nowuser["groupid"]){
+						$('#big').append(showmsg(json["name"]+" 上線",json["people"]));
+						var p=JSON.parse(json["people"]);
+						$('#chatcount').html(p["count"]);
+						//alert(json["people"]);
+						//alert(msg+" 連線");
+					}
+				
+			}else if(way=="leave"){
+					var json=JSON.parse(msg);
+					if(json["groupid"]==nowuser["groupid"]){
+						$('#big').append(showmsg(json["name"]+" 離開",json["people"]));
+						
+						var p=JSON.parse(json["people"]);
+
+						$('#chatcount').html(p["count"]);
+						//alert(json["people"]);
+						//alert(msg+" 離開");
+					}
+			}
+			if(slide){
+				var hi=$("#big").height();
+				var scroll=$("#big").prop('scrollHeight');
+				//alert(hi+"~~"+$("#big").prop('scrollHeight'));
+				$("#big").dequeue().animate({ scrollTop:scroll-hi }, 1000);
+			}
+	   });
+	   
+	 //  socket.on("message",function(message){  
+                /*
+                    When server sends data to the client it will trigger "message" event on the client side , by 
+                    using socket.on("message") , one cna listen for the ,message event and associate a callback to 
+                    be executed . The Callback function gets the dat sent from the server 
+                */
+				//alert(message);
+       //        console.log("Message from the server arrived")
+       //         people = JSON.parse(message);
+                //console.log(message); /*converting the data into JS object */
+                
+        //    });
+			
+function self(text,time){
+    var txt=
+                    '<div class="block float_right  shapediv self" data-toggle="tooltip" data-placement="left" title="'+time+'">'+
+                        text+
+                    '</div>'
+              ;
+    return txt;
+}
+    function other(name,text,time){
+        var txt='<div class="block">'+
+                       '<div class="othername">'+
+                           name+
+                       '</div>'+
+                       '<div class="shapediv other" data-toggle="tooltip" data-placement="right" title="'+time+'">'+
+                           text+
+                       '</div>'+
+                  '</div>';
+        return txt;
+    }
+	function showmsg(txt,t){
+		var json=JSON.parse(t);
+		var g=[];
+		for(var key in json){ 
+			if(key!="count")
+			g.push(json[key]);
+		}
+		
+		var txt='<div class="block leave">'+
+					txt+
+				'</div>'+
+				'<div class="c">'+
+					"("+g.join()+")"+
+				'</div>';
+		return txt;
+	}
+   // document.getElementById("big").innerHTML+=self("hi~","000000000");
+</script>
+
+
+</body>
+</html>

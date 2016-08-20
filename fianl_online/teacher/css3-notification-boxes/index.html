@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>CSS3 Notification Boxes Demo</title>
+  <link rel="shortcut icon" href="http://designshack.net/favicon.ico">
+  <link rel="icon" href="http://designshack.net/favicon.ico">
+  <link rel="stylesheet" type="text/css" media="all" href="style.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <div id="topbar"><a href="http://designshack.net">Back to Design Shack</a></div>
+  <div id="w">
+    <div id="content">
+      <!-- Icons source http://dribbble.com/shots/913555-Flat-Web-Elements -->
+      <div class="notify successbox">
+        <h1>Success!</h1>
+        <span class="alerticon"><img src="images/check.png" alt="checkmark" /></span>
+        <p>Thanks so much for your message. We check e-mail frequently and will try our best to respond to your inquiry.</p>
+      </div>
+      
+      <div class="notify errorbox">
+        <h1>Warning!</h1>
+        <span class="alerticon"><img src="images/error.png" alt="error" /></span>
+        <p>You did not set the proper return e-mail address. Please fill out the fields and then submit the form.</p>
+      </div>
+      
+      <p>Click the error boxes to dismiss with a fading effect.</p>
+      
+      <p>Add more by appending dynamic HTML into the page via jQuery. Plus the notifications are super easy to customize.</p>
+      
+      <div class="btns clearfix">
+        <a href="#" id="newSuccessBox" class="flatbtn">New Success Box</a>
+        <a href="#" id="newAlertBox" class="flatbtn">New Alert Box</a>
+      </div>
+    </div><!-- @end #content -->
+  </div><!-- @end #w -->
+<script type="text/javascript">
+$(function(){
+  $('#content').on('click', '.notify', function(){
+    $(this).fadeOut(350, function(){
+      $(this).remove(); // after fadeout remove from DOM
+    });
+  });
+  
+  // handle the additional windows
+  $('#newSuccessBox').on('click', function(e){
+    e.preventDefault();
+    var samplehtml = $('<div class="notify successbox"> <h1>Success!</h1> <span class="alerticon"><img src="images/check.png" alt="checkmark" /></span> <p>You did not set the proper return e-mail address. Please fill out the fields and then submit the form.</p> </div>').prependTo('#content');
+  });
+  $('#newAlertBox').on('click', function(e){
+    e.preventDefault();
+    var samplehtml = $('<div class="notify errorbox"> <h1>Warning!</h1> <span class="alerticon"><img src="images/error.png" alt="error" /></span> <p>You did not set the proper return e-mail address. Please fill out the fields and then submit the form.</p> </div>').prependTo('#content');
+  });
+});
+</script>
+</body>
+</html>
