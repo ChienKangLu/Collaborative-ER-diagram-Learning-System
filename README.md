@@ -4,8 +4,8 @@ We design an online collaboration platform which is a collaborative learning env
 ## Develop tool and technique
 + Html5, css
 + Javascript
-+ xampp, Nodejs(socket.io)
-+ php, Mysql
++ Xampp, Nodejs(socket.io)
++ Php, Mysql
 
 ## In practice
 + This system is used in a experiment which contains 45 students
