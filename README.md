@@ -3,11 +3,17 @@ We design an online collaboration platform which is a collaborative learning env
 
 ## System screenshot
 ### Enter account and password to login system
+<p align="center">
 <img height="300" src="https://github.com/ChienKangLu/Online-Collaboration-ERD-System/blob/master/img/login.jpg" />
+</p>
 
 ### Draw ERD and communicate with team member
-<img height="300" src="https://github.com/ChienKangLu/Online-Collaboration-ERD-System/blob/master/img/answer%20area.jpg" /></br>
+<p align="center">
+<img height="300" src="https://github.com/ChienKangLu/Online-Collaboration-ERD-System/blob/master/img/answer%20area.jpg" />
+</p>
 
 ### Observe other's idea and integrate different knowledge
-<img height="300" src="https://github.com/ChienKangLu/Online-Collaboration-ERD-System/blob/master/img/colab%20area.jpg" /></br>
+<p align="center">
+<img height="300" src="https://github.com/ChienKangLu/Online-Collaboration-ERD-System/blob/master/img/colab%20area.jpg" />
+</p>
 
