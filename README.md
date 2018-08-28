@@ -7,6 +7,9 @@ We design an online collaboration platform which is a collaborative learning env
 + xampp, Nodejs(socket.io)
 + php, Mysql
 
+## In practice
++ This system is used in a experiment which contains 45 students
+
 ## System screenshot
 ### Enter account and password to login system
 <p align="center">
