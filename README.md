@@ -1,7 +1,7 @@
 # Online Collaboration ERD System
 We design an online collaboration platform which is a collaborative learning environment used to integrate different knowledge (Entity-relationship model, ERD) from other team members. Through communicating with team members and observing other's idea, we hope this platform can accelerate knowledge integration and promote learning efficiency.
 
-## Develop tool and technique
+## Develop tools and techniques
 + Html5, css
 + Javascript
 + Xampp, Nodejs(socket.io)
