@@ -1,5 +1,5 @@
-# Online Collaboration ERD System
-We design an online collaboration platform which is a collaborative learning environment used to integrate different knowledge (Entity-relationship model, ERD) from other team members. Through communicating with team members and observing other's idea, we hope this platform can accelerate knowledge integration and promote learning efficiency.
+# Collaborative ER diagram Learning System
+We design Collaborative ER diagram Learning System which is a collaborative learning environment used to integrate different knowledge (Entity-relationship model, ERD) from other team members. Through communicating with team members and observing other's idea, we hope this system can accelerate knowledge integration and promote learning efficiency.
 
 ## Develop tools and techniques
 + Html5, css
@@ -8,7 +8,8 @@ We design an online collaboration platform which is a collaborative learning env
 + Php, Mysql
 
 ## In practice
-+ This system is used in a experiment which contains 45 students
++ Taught ER diagram to 77 students and recorded participant learning behaviors by the collaborative learning system
+for further analysis
 
 ## System screenshot
 ### Enter account and password to login system
