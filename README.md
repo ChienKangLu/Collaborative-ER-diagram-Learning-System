@@ -12,11 +12,6 @@ We design Collaborative ER diagram Learning System which is a collaborative lear
 for further analysis
 
 ## System screenshot
-### Enter account and password to login system
-<p align="center">
-<img height="300" src="https://github.com/ChienKangLu/Online-Collaboration-ERD-System/blob/master/img/login.jpg" />
-</p>
-
 ### Draw ERD and communicate with team member
 <p align="center">
 <img height="300" src="https://github.com/ChienKangLu/Online-Collaboration-ERD-System/blob/master/img/answer%20area.jpg" />
